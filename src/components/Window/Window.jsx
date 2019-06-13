@@ -127,7 +127,7 @@ class Window extends Component {
                             </div>
 
                             <div className="Window__main-chart">
-                                <h5>Price</h5>
+                                <h5>10 Day History</h5>
                                 <LineChart
                                     width={225}
                                     height={120}
