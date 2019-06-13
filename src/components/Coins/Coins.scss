@@ -1,0 +1,29 @@
+.Coins {
+    padding: 20px 10px;
+    height: 700px;
+    width: 1000px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    color: black;
+    &__item {
+        width: 100px;
+        padding: 5px;
+        height: 100px;
+        text-align: center;
+        font-size: 80%;
+    }
+    &__icon {
+        text-align: center;
+        img {
+            width: 50px;
+        }
+    }
+    &__label {
+        color: black;
+    }
+    &__label-active {
+        color: #5856f2;
+    }
+}
