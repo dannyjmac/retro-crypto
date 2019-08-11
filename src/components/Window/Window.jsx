@@ -1,4 +1,5 @@
 import React, { Component }from 'react';
+
 import Draggable from 'react-draggable';
 import classNames from 'classnames';
 import { LineChart, Line, XAxis, YAxis } from 'recharts';
@@ -6,19 +7,22 @@ import { ScaleLoader } from 'halogenium';
 import moment from 'moment';
 import 'chart.js';
 
-import './Window.scss';
-import x from './images/x.png';
+import { 
+    PRICE_PATH,
+    CHANGE_PATH,
+    DAILY_PATH,
+    DAILY_LIMIT,
+    DAILY_AGGREGATE,
+    DAILY_DATE,
+    TODAY,
+    EXCHANGE,
+    DOUBLE_USD,
+    SINGLE_USD
+} from '../../helpers/cryptocompare.js';
 
-const PRICE_PATH = "https://min-api.cryptocompare.com/data/price?fsym=";
-const CHANGE_PATH = 'https://min-api.cryptocompare.com/data/generateAvg?fsym=';
-const DAILY_PATH = 'https://min-api.cryptocompare.com/data/histoday?fsym=';
-const DAILY_LIMIT = '&limit=10';
-const DAILY_AGGREGATE = '&aggregate=1';
-const DAILY_DATE = '&toTs=';
-const TODAY = moment().unix()
-const EXCHANGE = '&e=Bitfinex';
-const DOUBLE_USD = "&tsyms=USD";
-const SINGLE_USD = "&tsym=USD";
+import './Window.scss';
+
+import x from './images/x.png';
 
 class Window extends Component {
 
@@ -28,6 +32,7 @@ class Window extends Component {
         daily: [],
         loading: true,
     }
+
 
     componentDidMount() {
         this.getCoin(this.props.coin);
@@ -84,11 +89,15 @@ class Window extends Component {
     }
 
     render() {  
-
         const { coin, close, changeTopWindow, topWindow } = this.props;
+
         return (
 
-            <Draggable onStart={() => changeTopWindow(coin)}>
+            <Draggable
+                onStart={() => changeTopWindow(coin)}
+                defaultPosition={{x: 50, y: -500}}
+
+            >
 
                 <div className={classNames('Window', { 'Window__top-window': coin.tag === topWindow })}>
                     <div className="Window__inner">
@@ -130,13 +139,13 @@ class Window extends Component {
                                 <h5>10 Day History</h5>
                                 <LineChart
                                     width={225}
-                                    height={120}
+                                    height={140}
                                     data={this.state.daily}
                                 >
                                     <XAxis tick={ false } dataKey="time" />
                                     <YAxis tick={{ fontSize: 10 }} width={38} type="number" domain={['dataMin', 'dataMax']} />
                                     <Line animationDuration={2000} type="monotone" dataKey="close" stroke="#5856f2" activeDot={{ r: 8 }} />
-                                </LineChart>
+                                </LineChart>    
                             </div>
                         </div>
                         }

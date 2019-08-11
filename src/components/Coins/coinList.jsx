@@ -29,16 +29,8 @@ const coinList = [
         name: "Omise Go"
     },
     {
-        tag: "XLM",
-        name: "Stellar"
-    },
-    {
         tag: "XMR",
         name: "Monero"
-    },
-    {
-        tag: "DASH",
-        name: "Dash"
     },
 ]
 

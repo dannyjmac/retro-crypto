@@ -23,10 +23,25 @@ class App extends Component {
 
   addOpenWindow = (coin) => {
     if (!this.state.activeCoins.includes(coin)) {
+      const coinWithWindowPosition = this.addWindowPosition(coin)
       const activeCoins = [...this.state.activeCoins]
-      activeCoins.push(coin)
+      activeCoins.push(coinWithWindowPosition)
       this.setState({ activeCoins: activeCoins})
     }
+  }
+
+  addWindowPosition = (coin) => {
+    let x, y;
+    if (this.state.activeCoins.length === 0) {
+      x = 50;
+      y = -500;
+    } else {
+      const lastWindow = [...this.state.activeCoins].pop();
+      x = lastWindow.position.x + 20
+      y = lastWindow.position.y - 20
+    }
+    coin.position = {x: x, y: y};
+    return coin
   }
 
   renderWindows = () => {
