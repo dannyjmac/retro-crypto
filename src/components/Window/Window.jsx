@@ -78,7 +78,9 @@ class Window extends Component {
                 item.close = item.close.toFixed(2)
             }
 
-        })
+            item.close = Number(item.close)
+
+        })  
         this.setState({ daily: formatted }, () => this.checkRecieved())
     }
 
@@ -90,6 +92,7 @@ class Window extends Component {
 
     render() {  
         const { coin, close, changeTopWindow, topWindow } = this.props;
+        console.log(this.state.daily)
 
         return (
 
